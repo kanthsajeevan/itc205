@@ -1,8 +1,0 @@
-$ git checkout work
-Switched to branch 'sujeevan'
-$ git checkout master -- ITC515_assignment2
-$ git add ITC515_assignment2
-$ git commit -m "Adding 'ITC515_assignment2' directory from 'master' branch."
-[work 9fcd968] Adding 'ITC515_assignment2' directory from 'master' branch.
- 1 file changed, 0 insertions(+), 0 deletions(-)
- create mode 100644 ITC515_assignment2/file

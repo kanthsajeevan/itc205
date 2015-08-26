@@ -54,15 +54,17 @@ public class CgUI extends javax.swing.JFrame implements IUnitLister,
 		jLabel5 = new javax.swing.JLabel();
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
+		
+		//in here we have changed the background colour to white.. 
 		getContentPane().setBackground(Color.decode("#FFFFFF"));
 
 		jLabel1.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
 		jLabel1.setText("Check Grade UI");
 		jLabel1.setForeground(Color.BLUE);
+		//we have changed the font size and colour of the label.. 
 
 		jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Unit"));
-		jPanel1.setOpaque(false);
+		jPanel1.setOpaque(false); //panel transparent background   
 
 		jComboBox1.setModel(uM);
 		jComboBox1.addItemListener(new java.awt.event.ItemListener() {
@@ -97,7 +99,7 @@ public class CgUI extends javax.swing.JFrame implements IUnitLister,
 
 		jPanel2.setBorder(javax.swing.BorderFactory
 				.createTitledBorder("Student"));
-		jPanel2.setOpaque(false);
+		jPanel2.setOpaque(false); //panel transparent background   
 
 		jComboBox2.setModel(rM);
 		jComboBox2.addItemListener(new java.awt.event.ItemListener() {
@@ -131,7 +133,7 @@ public class CgUI extends javax.swing.JFrame implements IUnitLister,
 								Short.MAX_VALUE)));
 
 		jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Marks"));
-		jPanel3.setOpaque(false);
+		jPanel3.setOpaque(false); //panel transparent background   
 
 		jLabel2.setText("Asg1:");
 
@@ -222,7 +224,7 @@ public class CgUI extends javax.swing.JFrame implements IUnitLister,
 		jPanel3.setLayout(jPanel3Layout);
 
 		jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Grade"));
-		jPanel4.setOpaque(false);
+		jPanel4.setOpaque(false); //panel transparent background   
 
 		jLabel5.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
 		jLabel5.setForeground(new java.awt.Color(255, 0, 0));

@@ -1,6 +1,6 @@
 package datamanagement;
 
-public class StudentUnitRecordProxy implements IStudentUnitRecord {
+public abstract class StudentUnitRecordProxy implements IStudentUnitRecord {
        private Integer studentId;
        private String subjectCode;
        private StudentUnitRecordManager studentUnitManager;

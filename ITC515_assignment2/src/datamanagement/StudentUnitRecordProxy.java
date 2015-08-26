@@ -1,26 +1,65 @@
 package datamanagement;
+
 public class StudentUnitRecordProxy implements IStudentUnitRecord {
-private Integer studentID;
-private String unitCode;
-private StudentUnitRecordManager mngr;
-public StudentUnitRecordProxy( Integer id, String code ) 
-{
-this.studentID = id;this.unitCode = code;
-this.mngr = StudentUnitRecordManager.instance();}
-public Integer getStudentID() { return studentID;}
-public String getUnitCode() { return unitCode; 
+       private Integer studentId;
+       private String subjectCode;
+       private StudentUnitRecordManager studentUnitManager;
+
+       public StudentUnitRecordProxy( Integer studentId, 
+                        String subjectCode ) {
+  
+       this.studentId = studentId;
+       this.subjectCode = subjectCode;
+       this.studentUnitManager = StudentUnitRecordManager.instance();
+                          
+       }
+       
+       public Integer getStudentId() { 
+                return studentId;
+         
+       }
+       
+       public String getSubjectCode() { 
+               return subjectCode; 
+       }
+       
+       public float getAssignment1() {
+	          	return studentUnitManager.getStudentUnitRecord(studentId,
+				      subjectCode).getAssignment1();
+    	}
+       
+      public void setAssignent1(float assignment1Mark) {
+               studentUnitManager.getStudentUnitRecord( studentId, 
+                               subjectCode ).setAssignment1(assignment1Mark);
+        
+      }
+
+      public float getAssignment2() {
+              return studentUnitManager.getStudentUnitRecord( studentId, 
+                              subjectCode ).getAssignment2();
+      }
+
+      public void setAssignment2(float assignment2mark) { 
+                studentUnitManager.getStudentUnitRecord( studentId, 
+                                subjectCode ).setAssignment2(assignment2mark);
+        
+      }
+      public float getExam() {
+        
+              return studentUnitManager.getStudentUnitRecord( studentId, 
+                          subjectCode ).getExam();
+        
+      }
+
+      public void setExam(float examMark) {
+               studentUnitManager.getStudentUnitRecord( studentId, 
+                               subjectCode ).setExam(examMark);
+      }
+     
+      
+      public float getTotalMark() {
+               return studentUnitManager.getStudentUnitRecord( studentId, subjectCode ).getTotalMark();
+        
+      }
+  
 }
-public void setAsg1(float mark) {
-mngr.getStudentUnitRecord( studentID, unitCode ).setAsg1(mark);}
-public float getAsg1() 
-{
-return mngr.getStudentUnitRecord( studentID, unitCode ).getAsg1();}
-public void setAsg2(float mark) { mngr.getStudentUnitRecord( studentID, unitCode ).setAsg2(mark);}
-public float getAsg2() {return mngr.getStudentUnitRecord( studentID, unitCode ).getAsg2();
-}
-public void setExam(float mark) {mngr.getStudentUnitRecord( studentID, unitCode ).setExam(mark);
-}
-public float getExam() 
-{
-return mngr.getStudentUnitRecord( studentID, unitCode ).getExam();}
-public float getTotal() {return mngr.getStudentUnitRecord( studentID, unitCode ).getTotal();}}

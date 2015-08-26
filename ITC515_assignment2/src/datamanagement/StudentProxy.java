@@ -1,63 +1,68 @@
 package datamanagement;
+
 public class StudentProxy implements IStudent {
-private Integer I;
-private String l;
 
+    private Integer studentId;
 
+    private String firstName;
 
-    private String Il;
-    private StudentManager lI;
-    public StudentProxy( Integer id, String fn, String Il) {
-        this.I = id;
-        this.l = fn;
+    private String lastName;
+    private StudentManager studentManager;
+    
+    // StudentProxy constructor. Sets the relevant variables to the passed
+    // integers. Additionally, retrieves the StudentManager instance.
+    public StudentProxy( Integer studentId, String firstName, String lastName) {
+        this.studentId = studentId;
+        this.firstName = firstName;
 
         
-        this.Il = Il;
-this.lI = StudentManager.get();}
+        this.lastName = lastName;
 
-    public Integer getID() { return I; 
+        this.studentManager = StudentManager.get();}
 
-    
-    
-}
-public String getFirstName() { 
-        return l; }
+    public Integer getID() { 
+        return studentId;
+    }
+
+    public String getFirstName() { 
+        return firstName; }
 
     public String getLastName() { 
-return Il; 
-}
-public void setFirstName(String firstName) {
 
+        return lastName; 
+
+    }
+
+    public void setFirstName(String firstName) {
+
+        studentManager.getStudent(studentId).setFirstName(firstName);}
     
-    
-    
-    lI.getStudent(I).setFirstName(firstName);}
     public void setLastName(String lastName) {
         
         
         
-        lI.getStudent(I).setLastName(lastName);}
+        studentManager.getStudent(studentId).setLastName(lastName);}
 
     
     
-        public void addUnitRecord(IStudentUnitRecord record) {
-        lI.getStudent(I).addUnitRecord(record);}
-        public IStudentUnitRecord getUnitRecord(String unitCode) {
+     // The method addUnitRecord adds a single passed student unit record to
+     // the StudentManager of this StudentProxy object.  
+    public void addUnitRecord(IStudentUnitRecord record) {
+        
+        studentManager.getStudent(studentId).addUnitRecord(record);}
+    
+    // The getUnitRecord method differs from the standard getter that
+    // returns the entire unit record list, rather it returns one unit
+    // record based on a passed unit code.
+    public IStudentUnitRecord getUnitRecord(String unitCode) {
 
-            
- 
-            
-            
-            
-            
-            
-                    return lI.getStudent(I).getUnitRecord(unitCode);}
+           
+        return studentManager.getStudent(studentId).getUnitRecord(unitCode);}
 
 
-        
-  
-        
-        
-        
-        
-                                public StudentUnitRecordList getUnitRecords() { return lI.getStudent(I).getUnitRecords();}}
+   
+    public StudentUnitRecordList getUnitRecords() {
+                                    
+        return studentManager.getStudent(studentId).getUnitRecords();
+    }
+}

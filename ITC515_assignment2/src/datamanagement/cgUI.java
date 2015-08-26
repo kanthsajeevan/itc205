@@ -345,8 +345,9 @@ public class CgUI extends javax.swing.JFrame implements IUnitLister,
 			Float total = assignment1_ + assignment2_ + finalExam_;
 			String totalmarks = String.format("%.0f", total);
           
-			jLabel5.setText(s+"-"+totalmarks+"%");
+			jLabel5.setText(s+"-"+totalmarks+"%"); //printing Grade with Total marks 
                         
+                    //Label colour will change with the grades      
                     if (s=="AE") {
                         jLabel5.setForeground(Color.decode("#CE3700"));
                     } else if (s=="PS") {

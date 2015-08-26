@@ -28,7 +28,7 @@ this.ln = lastName; }
 public void addUnitRecord( IStudentUnitRecord record ) { su.add(record); }
         public IStudentUnitRecord getUnitRecord( String unitCode ) {
 for ( IStudentUnitRecord r : su ) 
-            if ( r.getUnitCode().equals(unitCode)) 
+            if ( r.getSubjectCode().equals(unitCode)) 
 return r; 
 
 return null;

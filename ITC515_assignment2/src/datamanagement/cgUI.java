@@ -8,7 +8,7 @@ import java.awt.Color;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class cgUI extends javax.swing.JFrame implements IUnitLister,
+public class CgUI extends javax.swing.JFrame implements IUnitLister,
 		IStudentLister {
 	private cgCTL ctl;
 	private javax.swing.DefaultComboBoxModel uM;
@@ -18,7 +18,7 @@ public class cgUI extends javax.swing.JFrame implements IUnitLister,
 	float f3;
 	Integer sid;
 
-	public cgUI(cgCTL ctl) {
+	public CgUI(cgCTL ctl) {
 		this.ctl = ctl;
 		uM = new javax.swing.DefaultComboBoxModel(new String[0]);
 		rM = new javax.swing.DefaultComboBoxModel(new String[0]);
@@ -55,10 +55,14 @@ public class cgUI extends javax.swing.JFrame implements IUnitLister,
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-		jLabel1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+		getContentPane().setBackground(Color.decode("#FFFFFF"));
+
+		jLabel1.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
 		jLabel1.setText("Check Grade UI");
+		jLabel1.setForeground(Color.BLUE);
 
 		jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Unit"));
+		jPanel1.setOpaque(false);
 
 		jComboBox1.setModel(uM);
 		jComboBox1.addItemListener(new java.awt.event.ItemListener() {
@@ -93,6 +97,7 @@ public class cgUI extends javax.swing.JFrame implements IUnitLister,
 
 		jPanel2.setBorder(javax.swing.BorderFactory
 				.createTitledBorder("Student"));
+		jPanel2.setOpaque(false);
 
 		jComboBox2.setModel(rM);
 		jComboBox2.addItemListener(new java.awt.event.ItemListener() {
@@ -126,6 +131,7 @@ public class cgUI extends javax.swing.JFrame implements IUnitLister,
 								Short.MAX_VALUE)));
 
 		jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Marks"));
+		jPanel3.setOpaque(false);
 
 		jLabel2.setText("Asg1:");
 
@@ -216,6 +222,7 @@ public class cgUI extends javax.swing.JFrame implements IUnitLister,
 		jPanel3.setLayout(jPanel3Layout);
 
 		jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Grade"));
+		jPanel4.setOpaque(false);
 
 		jLabel5.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
 		jLabel5.setForeground(new java.awt.Color(255, 0, 0));
@@ -333,7 +340,25 @@ public class cgUI extends javax.swing.JFrame implements IUnitLister,
 		//lblErrMsg.setText("");
 		try {
 			String s = ctl.checkGrade(f1, f2, f3);
-			jLabel5.setText(s);
+			Float total = f1 + f2 + f3;
+			String totalmarks = String.format("%.0f", total);
+          
+			jLabel5.setText(s+" - "+totalmarks+"%");
+                        
+                    if (s=="AE") {
+                        jLabel5.setForeground(Color.decode("#CE3700"));
+                    } else if (s=="PS") {
+                        jLabel5.setForeground(Color.decode("#00A413"));
+                    }else if (s=="CR") {
+                        jLabel5.setForeground(Color.decode("#005F0B"));
+                    }else if (s=="DI") {
+                        jLabel5.setForeground(Color.decode("#1A62C8"));
+                    }else if (s=="HD") {
+                        jLabel5.setForeground(Color.decode("#002F70"));
+                    }else {
+                        jLabel5.setForeground(Color.decode("#DB0000"));
+                    }
+                        
 		}
 		catch (RuntimeException re) {
 			jlabel6.setText(re.getMessage());
@@ -432,7 +457,7 @@ public class cgUI extends javax.swing.JFrame implements IUnitLister,
 		jButton3.setEnabled(b);
 	}
 
-	// Variables declaration - do not modify//GEN-BEGIN:variables
+	// Variables declaration - do not modify                     
 	private javax.swing.JButton jButton1;
 	private javax.swing.JButton jButton2;
 	private javax.swing.JButton jButton3;

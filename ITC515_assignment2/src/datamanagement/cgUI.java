@@ -343,7 +343,7 @@ public class CgUI extends javax.swing.JFrame implements IUnitLister,
 			Float total = f1 + f2 + f3;
 			String totalmarks = String.format("%.0f", total);
           
-			jLabel5.setText(s+" - "+totalmarks+"%");
+			jLabel5.setText(s+"-"+totalmarks+"%");
                         
                     if (s=="AE") {
                         jLabel5.setForeground(Color.decode("#CE3700"));

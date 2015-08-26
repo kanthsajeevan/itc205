@@ -1,4 +1,4 @@
-package datamanagement;
+ppackage datamanagement;
 public class StudentUnitRecordProxy implements IStudentUnitRecord {
         private Integer studentId;
         private String unitCode;
@@ -56,3 +56,4 @@ public class StudentUnitRecordProxy implements IStudentUnitRecord {
                 unitCode ).getTotal();
         }
 }
+

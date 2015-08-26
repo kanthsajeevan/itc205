@@ -3,16 +3,16 @@ package datamanagement;
 public interface IStudentUnitRecord {
 
     public Integer getStudentId();
-    public String getSubjectCode();
+    public String getUnitCode();
 
-    public void setAssignment1(float assignment1Mark);
+    public void setAssignment1(float mark);
     public float getAssignment1();
 
-    public void setAssignment2(float assignment2Mark);
+    public void setAssignment2(float mark);
     public float getAssignment2();
 
-    public void setExam(float examMark);
+    public void setExam(float mark);
     public float getExam();
 
-    public float getTotalMark();
+    public float getTotal();
 }

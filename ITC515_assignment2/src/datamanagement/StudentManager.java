@@ -1,75 +1,129 @@
 package datamanagement;
 
-public class Student implements IStudent {
+import org.jdom.*;
+import java.util.List;
+public class StudentManager {
+    private static StudentManager instance = null;
+
     
-    private Integer identification;
-    private String firstName;
-    private String lastName;
-    private StudentUnitRecordList studentUnitRecordList;
-
-// Constructor for the Student class. Will create the Student object based
-// on the values of the parameters passed.
-public Student( Integer identification, String firstName, String lastName,
-        StudentUnitRecordList studentUnitRecordList ) { 
-    this.identification = identification; 
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.studentUnitRecordList = 
-       studentUnitRecordList == null ? new StudentUnitRecordList() : 
-                studentUnitRecordList;
-}
-
-    public Integer getID() {
-        return this.identification; 
-
-    } 
-    public String getFirstName() { 
-        return firstName; 
-    }
-
-    public void setFirstName( String firstName ) { 
-
-        this.firstName = firstName;
-    }
-
-
-    public String getLastName() { 
+    private StudentMap studentMap;
+    private java.util.HashMap<String, StudentMap> studentsToUnitsMap;
     
-        return lastName;
-    }
-   
-    public void setLastName( String lastName ) { 
 
-         this.lastName = lastName;
+     // The StudentManager's getInstance method. Will return the
+     // lone instance of this class.
+    public static StudentManager getInstance() {
+        
+        if (instance == null) 
+            
+
+            instance = new StudentManager();
+        
+        return instance; }
+
+    // The private StudentManager constructor, potentially called as
+    // a result of the getInstance() method being called.
+    private StudentManager() {
+
+        studentMap = new StudentMap();
+        studentsToUnitsMap = new java.util.HashMap<>();}
+        
+    // The method getStudent will return a Student based on the passed id
+    // parameter. If the student doesn't exist, the createStudent method
+    // is called with the passed id parameter and that result is returned.
+    public IStudent getStudent(Integer id) {
+
+        IStudent is = studentMap.get(id);
+        
+        return is != null ? is : createStudent(id);
     }
-    
-     // The addUnitRecord method will add the passed student unit record
+
+
+   // The getStudentElement will take a passed id parameter and return
+   // an Element based on the id matching a particular attribute value.
+   // If there is no match, it will return null.
+    private Element getStudentElement(Integer id) {
+        for (Element element : (List<Element>) XMLManager.getXML().getDocument()
+                .getRootElement().getChild("studentTable").getChildren("student")) 
+            if (id.toString().equals(element.getAttributeValue("sid"))) 
   
-     // to this object's student unit record list.
-     public void addUnitRecord( IStudentUnitRecord record ) { 
-         studentUnitRecordList.add(record);
-     }
+                return element;
+       return null;
+       
+                }
+    
+                 // The createStudent method will create a Student based on a match to 
+                 // the passed id parameter. If the Student is not able to be created
+                 // then an exception is thrown describing the problem.
+                private IStudent createStudent(Integer id) {
+                    IStudent iStudent;
         
-    // The getUnitRecord method differs from the standard getter that
-    // returns the entire unit record list, rather it returns one unit
-    // record, if it exists, based on a passed unit code. 
-     public IStudentUnitRecord getUnitRecord( String unitCode ) {
-
-            for ( IStudentUnitRecord record : studentUnitRecordList ) 
+                    Element element = getStudentElement(id);
+        
+                    if (element != null) {
             
-                if ( record.getUnitCode().equals(unitCode)) 
+                        StudentUnitRecordList rlist = StudentUnitRecordManager.instance().getRecordsByStudent(id);
+    
+                        iStudent = new Student(new Integer(element.getAttributeValue("sid")),element.getAttributeValue("fname"),element.getAttributeValue("lname"),rlist);
 
-                
-                    return record; 
+    
+    
+                        studentMap.put(iStudent.getID(), iStudent);
+        
+                        return iStudent;
+                    }
+
+                    throw new RuntimeException("DBMD: createStudent : student not in file");
+                }
+    
+                 // The createStudentProxy method will create and return a StudentProxy
+                 // based on a match to the passed id parameter. If the Proxy cannot be 
+                 // created, an exception is thrown describing the problem.
+                private IStudent createStudentProxy(Integer id) {
+        
+                    Element element = getStudentElement(id);
+        
+        
+                    if (element != null) 
+                        return new StudentProxy(id, element.getAttributeValue("fname"), 
+                                element.getAttributeValue("lname"));
+        
+                    throw new RuntimeException("DBMD: createStudent : student not in file");
+                }
+
+        
+                // The getStudentsByUnit method will create a StudentMap and return it.
+                // Its contents are based on what students have a matching unit code to 
+                // the passed unitCode parameter.
+                public StudentMap getStudentsByUnit(String  unitCode) {
+       
+                    StudentMap studentMap = studentsToUnitsMap.get( unitCode);
+        
+                    if (studentMap != null) 
+
+                    {
+                        return studentMap;
+                }
 
 
+                    studentMap = new StudentMap();
+
+                    IStudent iStudent;
+    
+                    StudentUnitRecordList ur = StudentUnitRecordManager.instance()
+                            .getRecordsByUnit( unitCode);
+        
+                    for (IStudentUnitRecord S : ur) {
             
-            return null;
+            
+           
+                        iStudent = createStudentProxy(new Integer(S.getStudentId()));
+   
+                        studentMap.put(iStudent.getID(), iStudent);}
+    
+                    studentsToUnitsMap.put(  unitCode, studentMap);
         
-}
-        
+                    return studentMap;
 
-        public StudentUnitRecordList getUnitRecords() {
-            return studentUnitRecordList; 
-        }
+                }
 }

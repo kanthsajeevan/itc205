@@ -18,7 +18,7 @@ public class StudentProxy implements IStudent {
         
         this.lastName = lastName;
 
-        this.studentManager = StudentManager.get();}
+        this.studentManager = StudentManager.getInstance();}
 
     public Integer getID() { 
         return studentId;

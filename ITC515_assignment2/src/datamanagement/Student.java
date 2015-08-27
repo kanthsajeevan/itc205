@@ -1,66 +1,75 @@
 package datamanagement;
 
 public class Student implements IStudent {
-    private Integer id; private String fn;
-            private String ln;
-private StudentUnitRecordList su;
+    
+    private Integer identification;
+    private String firstName;
+    private String lastName;
+    private StudentUnitRecordList studentUnitRecordList;
 
 // Constructor for the Student class. Will create the Student object based
 // on the values of the parameters passed.
-public Student( Integer id, String fn, String ln, StudentUnitRecordList su ) { this.id = id; this.fn = fn;
-        this.ln = ln;this.su = 
-       
-                su == null ? new StudentUnitRecordList() : 
-                su;
+public Student( Integer identification, String firstName, String lastName,
+        StudentUnitRecordList studentUnitRecordList ) { 
+    this.identification = identification; 
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.studentUnitRecordList = 
+       studentUnitRecordList == null ? new StudentUnitRecordList() : 
+                studentUnitRecordList;
 }
 
-    public Integer getID() { return this.id; 
+    public Integer getID() {
+        return this.identification; 
 
     } 
     public String getFirstName() { 
-
-        return fn; }
+        return firstName; 
+    }
 
     public void setFirstName( String firstName ) { 
 
-        this.fn = firstName; }
+        this.firstName = firstName;
+    }
 
 
     public String getLastName() { 
     
-        return ln; }
+        return lastName;
+    }
    
     public void setLastName( String lastName ) { 
 
-        
-
-        this.ln = lastName; }
+         this.lastName = lastName;
+    }
     
      // The addUnitRecord method will add the passed student unit record
   
      // to this object's student unit record list.
+     public void addUnitRecord( IStudentUnitRecord record ) { 
+         studentUnitRecordList.add(record);
+     }
+        
+    // The getUnitRecord method differs from the standard getter that
+    // returns the entire unit record list, rather it returns one unit
+    // record, if it exists, based on a passed unit code. 
+     public IStudentUnitRecord getUnitRecord( String unitCode ) {
 
-
-    public void addUnitRecord( IStudentUnitRecord record ) { su.add(record); }
-        public IStudentUnitRecord getUnitRecord( String unitCode ) {
-
-            for ( IStudentUnitRecord r : su ) 
+            for ( IStudentUnitRecord record : studentUnitRecordList ) 
             
-                if ( r.getUnitCode().equals(unitCode)) 
+                if ( record.getUnitCode().equals(unitCode)) 
 
                 
-                    return r; 
+                    return record; 
 
 
             
             return null;
         
 }
-        // The getUnitRecord method differs from the standard getter that
-        // returns the entire unit record list, rather it returns one unit
-        // record, if it exists, based on a passed unit code.
+        
 
         public StudentUnitRecordList getUnitRecords() {
-            return su; 
+            return studentUnitRecordList; 
         }
 }

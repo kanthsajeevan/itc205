@@ -1,3 +1,4 @@
+
 package datamanagement;
 
 public class Unit implements IUnit {
@@ -35,48 +36,48 @@ public class Unit implements IUnit {
 		return this.UN;
 	}
 
-	public void setPsCutoff1(float cutoff) {
+	public void setPassCutoff(float cutoff) {
 		this.co2 = cutoff;
 	}
 
-	public float getPsCutoff() {
+	public float getPassCutoff() {
 		return this.co2;
 	}
 
-	public void setCrCutoff(float cutoff) {
+	public void setCreditCutoff(float cutoff) {
 		this.co1 = cutoff;
 	}
 
-	public float getCrCutoff() {
+	public float getCreditCutoff() {
 		return this.co1;
 	}
 
-	public void setDiCutoff(float cutoff) {
+	public void setDistinctionCutoff(float cutoff) {
 		this.co4 = cutoff;
 	}
 
-	public float getDiCuttoff() {
+	public float getDistinctionCutoff() {
 		return this.co4;
 	}
 
-	public void HDCutoff(float cutoff) {
+	public void HighDistinctionCutoff(float cutoff) {
 		this.co3 = cutoff;
 	}
 
-	public void setHdCutoff(float cutoff) {
+	public void setHighDistinctionCutoff(float cutoff) {
 		this.co3 = cutoff;
 	}
 
-	public float getHdCutoff() {
+	public float getHighDistinctionCutoff() {
 		return this.co3;
 
 	}
 
-	public void setAeCutoff(float cutoff) {
+	public void setAlternativeExitCutoff(float cutoff) {
 		this.co5 = cutoff;
 	}
 
-	public float getAeCutoff() {
+	public float getAlternativeExitCutoff() {
 		return this.co5;
 	}
 
@@ -97,12 +98,12 @@ public class Unit implements IUnit {
 	}
 
 	@Override
-	public int getAsg1Weight() {
+	public int getAssignment1Weight() {
 		return a1;
 	}
 
 	@Override
-	public int getAsg2Weight() {
+	public int getAssignment2Weight() {
 		return a2;
 	}
 

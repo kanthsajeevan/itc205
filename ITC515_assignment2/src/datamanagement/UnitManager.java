@@ -7,7 +7,7 @@ public class UnitManager {
 
 	private static UnitManager self = null;
 
-	private UnitMap UM;
+	private UnitMap getUnitManager;
 
 	public static UnitManager UM() {
 		if (self == null)
@@ -16,11 +16,11 @@ public class UnitManager {
 	}
 
 	private UnitManager() {
-		UM = new UnitMap();
+		getUnitManager = new UnitMap();
 	}
 
 	public IUnit getUnit(String uc) {
-		IUnit iu = UM.get(uc);
+		IUnit iu = getUnitManager.get(uc);
 		return iu != null ? iu : createUnit(uc);
 
 	}
@@ -50,7 +50,7 @@ public class UnitManager {
 						Integer.valueOf(el.getAttributeValue("examwgt"))
 								.intValue(), StudentUnitRecordManager
 								.instance().getRecordsByUnit(unitCode));
-				UM.put(iu.getUnitCode(), iu);
+				getUnitManager.put(iu.getUnitCode(), iu);
 				return iu;
 			}
 
